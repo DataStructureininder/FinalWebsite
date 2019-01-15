@@ -18,14 +18,15 @@
 		<div class="logo">
 			<a href="http://localhost:8080/FinalTester/Main">Search Result<span>by
 					group 13</span></a>
+					<br><span><a href="/FinalTester/intro.html"
+				style="font-size: 30px; color:#E6E6FA">Introduction</a></span>
 		</div>
 	</header>
 
 	<!-- Main -->
 	<section id="main">
 		<div class="inner">
-
-	<a href="/FinalTester/intro.html">introduction</a>
+			
 
 			<p>
 				<%

@@ -9,7 +9,7 @@
 form {
 	position: absolute;
 	top: 280px;
-	left: 620px;
+	left: 570px;
 }
 
 body {
@@ -23,7 +23,9 @@ body {
 	<form id='form' class='form' action='${requestUri}' method='get'>
 		<input type='text' name='keyword' placeholder='keyword' style='width: 400px height: 20px'/> 
 		<input type='submit' value='submit' onclick='onClick()'style='background-color:#bb999b; border-color: transparent; font-family: Didot; font-size: 12px;'/>
+		<a href="/FinalTester/intro.html"><input type='button' value='introduction' style='background-color:#bb999b; border-color: transparent; font-family: Didot; font-size: 12px;'/></a>
 	</form>
+	
 	<script type="text/javascript">
 		function onClick(){
 			document.getElementById('cover').setAttribute('src','/FinalTester/imgs/loading.gif');
