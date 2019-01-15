@@ -9,14 +9,15 @@
 <title>Search Result</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="/FinalTester/css/main.css"/>
+<link rel="stylesheet" href="/FinalTester/css/main.css" />
 </head>
 <body>
 
 	<!-- Header -->
 	<header id="header">
 		<div class="logo">
-			<a href="http://localhost:8080/FinalTester/Main">Search Result<span>by group 13</span></a>
+			<a href="http://localhost:8080/FinalTester/Main">Search Result<span>by
+					group 13</span></a>
 		</div>
 	</header>
 
@@ -27,19 +28,21 @@
 
 			<p>
 				<%
-			String[][] orderList = (String[][]) request.getAttribute("query");
-			for (int i = 0; i < orderList.length; i++) {
-		%>
+					String[][] orderList = (String[][]) request.getAttribute("query");
+					for (int i = 0; i < orderList.length; i++) {
+				%>
 				<br>
-			<div>- <%=(i+1)+". "%>>
-				<a href='<%=orderList[i][1]%>'><%=orderList[i][0]%></a> <br>
-				<h style="font-size:5px ;"><%=orderList[i][1]%></h><!--  -->
+			<div>
+				-
+				<%=(i + 1) + ". "%>> <a href='<%=orderList[i][1]%>'><%=orderList[i][0]%></a>
+				<br>
+				<h style="font-size:5px ;"><%=orderList[i][2]%></h>
 			</div>
 			<br>
 
 			<%
-		}
-	%>
+				}
+			%>
 			</p>
 		</div>
 	</section>
@@ -48,13 +51,14 @@
 	<footer id="footer">
 		<div class="container">
 			<ul class="icons">
-				<li><a href="https://twitter.com" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="https://twitter.com" class="icon fa-twitter"><span
+						class="label">Twitter</span></a></li>
 				<li><a href="https://www.facebook.com" class="icon fa-facebook"><span
 						class="label">Facebook</span></a></li>
-				<li><a href="https://www.instagram.com/" class="icon fa-instagram"><span
-						class="label">Instagram</span></a></li>
-				<li><a href="https://mail.google.com/mail/" class="icon fa-envelope-o"><span
-						class="label">Email</span></a></li>
+				<li><a href="https://www.instagram.com/"
+					class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="https://mail.google.com/mail/"
+					class="icon fa-envelope-o"><span class="label">Email</span></a></li>
 			</ul>
 		</div>
 		<div class="copyright">

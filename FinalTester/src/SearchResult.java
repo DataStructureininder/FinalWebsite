@@ -30,7 +30,21 @@ public class SearchResult {
 					legalURL.add(new URLobj(ele2, inputSearch));
 				}
 			}
-/////////////
+			   //added
+			   int i = 0;
+			   Elements intros = duckduckgo.getElementsByAttributeValue("class", "st");
+			   for (Element ele : intros) {
+			    String intro = ele.toString();
+//			    System.out.println(intro);
+			    intro=intro.substring(intro.indexOf(">")+1, intro.indexOf("</span>"));
+			    while(intro.contains("<br>")) {
+			     int begin = intro.indexOf("<br>");
+			     intro = intro.substring(0,begin)+intro.substring(begin+4);
+			    }
+			    legalURL.get(i).intro = intro;
+			    i++;
+			   }
+			   //end of add
 
 			for (URLobj ele : legalURL) {
 				ele.countSum();
