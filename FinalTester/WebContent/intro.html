@@ -1,0 +1,291 @@
+<!DOCTYPE HTML>
+<!--
+	Road Trip by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Introduction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/FinalTester/assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="index.html">Data Structure<span> Group 13</span></a></div>
+				<a href="#menu"><span>Menu</span></a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="http://localhost:8080/FinalTester/Main">Search</a></li>
+				</ul>
+			</nav>
+
+		<!-- Banner -->
+		<!--
+			Note: To show a background image, set the "data-bg" attribute below
+			to the full filename of your image. This is used in each section to set
+			the background image.
+		-->
+			<section id="banner" class="bg-img" data-bg="banner.jpg">
+				<div class="inner">
+					<header>
+						<h1>Chuang B Google</h1>
+					</header>
+				</div>
+				<a href="#one" class="more">Learn More</a>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper post bg-img" data-bg="banner2.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>Motivation</h2>
+							<p>動機</p>
+						</header>
+						<div class="content">
+							<p>當想要找餐廳聚餐時，菜單通常會是形成最後決定的重要因素。但有時候
+								輸入餐廳名稱後，點進去第一條連結辛苦滑到底卻發現並沒有菜單，只能
+								在關鍵字後面加上「菜單」兩個字重新尋找。所以我們希望能做出一個專
+								門搜尋菜單的系統，主要從別人的食記去查詢，因為有些店不一定會有官
+								網的菜單，再依照時間先後排序食記，讓最新的菜單能出現在最前面。最
+								後，使用者只需要輸入餐廳名稱即可確定能在第一個結果中找到菜單，而
+								不需要再浪費一些時間自行在食記裡尋找。<br>
+								Motivation : When finding restaurants for meals, menus
+								are always one of the important factors to make the decision.
+								But sometimes we enter the restaurant name and click in the first
+								link, the menus aren’t exist. The only solution is searching again by
+								adding a word ”menu” after the keyword. So we want to develop a menu system,
+								which search from dining briefs (some restaurants don’t have official
+								menu) on net and order them by time, and thus the earliest menu can appear
+								in the front.</p>
+						</div>
+					</article>
+				</div>
+				<a href="#two" class="more">Learn More</a>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper post bg-img" data-bg="banner3.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>Tricks</h2>
+							<p>技巧</p>
+						</header>
+						<div class="content">
+							<p>
+								在搜尋到的網頁中，設定條件要先是特定網站 ( 食記類型 ) ，接下來搜
+								尋關鍵字 ( 例如 : 菜單、menu、美食、餐廳、 價格 )，再來是看網站圖
+								片的數量，多的排在前面，最後 依照日期新舊排序。<br>
+								Search Tricks: In all the websites, we first search for
+								the websites that are related to restaurant introduction. Next,
+								we search for websites that contains the most keywords(such as menu,
+								food, price, restaurant). Third, we check the pictures in the websites
+								and put them in order(from the most to the least). Last, put the
+								latest articles in the top of the list.
+							</p>
+						</div>
+					</article>
+				</div>
+				<a href="#three" class="more">Learn More</a>
+			</section>
+
+		<!-- Three -->
+			<section id="three" class="wrapper post bg-img" data-bg="banner4.jpg">
+				<div class="inner">
+					<article class="box">
+						<header>
+							<h2>System Introduction</h2>
+							<p>系統介紹</p>
+						</header>
+						<div class="content">
+							<p>
+								使用者 : 想找餐廳並想先看菜單的人
+								User: People who want to search for a restaurant and see its menu first.
+								目的 : 輸入餐廳即可獲得相關資訊 ( 菜單 )
+								Purpose: Users can type in restaurants’ name and get their menu.
+								在使用者輸入關鍵字之後，程式會將此輸入關鍵字加上預設關鍵字從 Google 取得搜 尋結果連結;
+								取得 Google 的搜尋結果連結之後，會在 SearchResult存結果的陣列中為每個連結新增 URLobj的物件，
+								存取 URL 及網頁標題與網頁的關鍵字、圖片、 時間分數，並在每個 URLobj 內新增一個 Counter 物件，
+								幫助 URLobj 算出此網頁 的三項分數，而時間的算法是把各種部落格的時間表示法格式化，轉成 YYMMDD 的格
+								式，並將小數點放在年與月中間，避免過度影響總分。<br>
+								When the users types keywords, we will put these with default keyword to get Google
+								connections . After that , we put these URL into URLobj object from SearchResult array,
+								which stores the websites title, the amount of keyword and image has appeared, and the
+								time score. Then, add a Counter object in every URLobj to help URLobj count the websites’
+								three scores. The calculation of time is determined by formatting every blogs’ time state
+								to a standard way(YYMMDD), and put decimal between year and month in order to avoid over-influences by month.
+							</p>
+						</div>
+					</article>
+				</div>
+				<a href="#four" class="more">Learn More</a>
+			</section>
+
+		<!-- Four -->
+		<section id="four" class="wrapper post bg-img" data-bg="banner5.jpg">
+			<div class="inner">
+				<article class="box">
+					<header>
+						<h2>System Introduction</h2>
+						<p>系統介紹</p>
+					</header>
+					<div class="content">
+						<p>
+							在 Counter 算完個別分 數之後回傳到 URLobj 算總分，其中公式是 (imgcount * 2 + keywordcount * 1.5 + timecount * 1) /
+							4.5，在算好成績之後，依照成績高低排序存在 SearchResult 裡存 有所有 URLobj 的 ArrayList，而此排序好的陣列就是我們的搜尋結果。
+							<br>
+							When Counter has calculated all individual scores, then return three scores to URLobj to count total score which different items have different weight
+							(imgcount * 2 + keywordcount * 1.5 + timecount * 1) / 4.5.
+							Sort the total score from high to low in SearchResult by ArrayList type, this ArrayList will be our finally search results.
+						</p>
+						<img src="images/class diagram.png" height="297.65" width="420.95"/></div>
+				</article>
+			</div>
+		</section>
+		<!-- Five -->
+		<section id="five" class="wrapper post bg-img" data-bg="banner6.jpg">
+			<div class="inner">
+				<article class="box">
+					<header>
+						<h2>Schedule</h2>
+						<p>時間規劃</p>
+					</header>
+					<div class="content">
+						<div class="table-wrapper">
+							<table>
+								<thead>
+								<tr>
+									<th>Process<br>項目</th>
+									<th>Completion days<br>完成天數</th>
+									<th>Completion date<br>完成日期</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>Build user interface<br>建立使用者介面</td>
+									<td>13天</td>
+									<td>11/28</td>
+								</tr>
+								<tr>
+									<td>Select specific websites<br>篩選食記類網站</td>
+									<td>10天</td>
+									<td>12/8</td>
+								</tr>
+								<tr>
+									<td>Search for keywords in the specific websites<br>篩選關鍵字</td>
+									<td>10天</td>
+									<td>12/18</td>
+								</tr>
+								<tr>
+									<td>Select the websites that contains the most pictures<br>篩選圖片數量</td>
+									<td>15天</td>
+									<td>12/28</td>
+								</tr>
+								<tr>
+									<td>Comparing the dates of the articles<br>比對時間</td>
+									<td>10天</td>
+									<td>1/7</td>
+								</tr>
+								<tr>
+									<td>Adjustment<br>修正</td>
+									<td>3天</td>
+									<td>1/10</td>
+								</tr>
+								</tbody>
+								<tfoot>
+								<tr>
+									<td colspan="2"></td>
+									<td>100.00</td>
+								</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+
+				</article>
+			</div>
+		</section>
+
+		<!-- Six -->
+		<section id="six" class="wrapper post bg-img" data-bg="banner3.jpg">
+			<div class="inner">
+				<article class="box">
+					<header>
+						<h2>Problem</h2>
+						<p>問題</p>
+					</header>
+					<div class="content">
+						<p>
+							輸入中文與英文搜尋的差別<br>
+							Will there be difference when users type in Chinese and when they type in English?<br>
+							如何篩選特定部落格的網站<br>
+							How to select specific websites?<br>
+							如何計算網頁中圖片的數量<br>
+							How to count the pictures in websites?<br>
+							Facade pattern使用法<br>
+							How to use Facade pattern<br>
+							使用者輸入錯誤的關鍵字<br>
+							How to use Facade pattern?<br>
+						</p>
+					</div>
+
+				</article>
+			</div>
+		</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+
+					<h2>Contact Me</h2>
+
+					<form action="#" method="post">
+
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input name="name" id="name" type="text" placeholder="Name">
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input name="email" id="email" type="email" placeholder="Email">
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input value="Send Message" class="button alt" type="submit"></li>
+						</ul>
+					</form>
+
+					<ul class="icons">
+						<li><a href="#" class="icon round fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon round fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon round fa-instagram"><span class="label">Instagram</span></a></li>
+					</ul>
+
+					<div class="copyright">
+						&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+					</div>
+
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="/FinalTester/assets/js/jquery.min.js"></script>
+			<script src="/FinalTester/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/FinalTester/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/FinalTester/assets/js/skel.min.js"></script>
+			<script src="/FinalTester/assets/js/util.js"></script>
+			<script src="/FinalTester/assets/js/main.js"></script>
+
+	</body>
+</html>

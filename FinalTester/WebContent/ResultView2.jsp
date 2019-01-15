@@ -25,6 +25,7 @@
 	<section id="main">
 		<div class="inner">
 
+	<a href="/FinalTester/intro.html">introduction</a>
 
 			<p>
 				<%
