@@ -21,15 +21,23 @@ body {
 	<img id='cover' src="/FinalTester/imgs/chuangb2.png"
 		style='width: 500px; height: 500px; position: absolute; top: -100px; left: 450px;'>
 	<form id='form' class='form' action='${requestUri}' method='get'>
-		<input type='text' name='keyword' placeholder='keyword' style='width: 400px height: 20px'/> 
-		<input type='submit' value='submit' onclick='onClick()'style='background-color:#bb999b; border-color: transparent; font-family: Didot; font-size: 12px;'/>
-		<a href="/FinalTester/intro.html"><input type='button' value='introduction' style='background-color:#bb999b; border-color: transparent; font-family: Didot; font-size: 12px;'/></a>
+		<input type='text' name='keyword' placeholder='keyword'
+			style='width: 400px height: 20px' /> <input type='submit'
+			value='submit' onclick='onClick()'
+			style='background-color: #bb999b; border-color: transparent; font-family: Didot; font-size: 12px;' />
+		<a href="/FinalTester/intro.html"><input type='button'
+			value='introduction'
+			style='background-color: #bb999b; border-color: transparent; font-family: Didot; font-size: 12px;' /></a>
 	</form>
-	
+
 	<script type="text/javascript">
-		function onClick(){
-			document.getElementById('cover').setAttribute('src','/FinalTester/imgs/loading.gif');
-			document.getElementById('cover').setAttribute('style','width: 100px; height: 100px; position: absolute; top: 90px; left: 650px;');
+		function onClick() {
+			document.getElementById('cover').setAttribute('src',
+					'/FinalTester/imgs/loading.gif');
+			document
+					.getElementById('cover')
+					.setAttribute('style',
+							'width: 100px; height: 100px; position: absolute; top: 90px; left: 650px;');
 		}
 	</script>
 </body>
