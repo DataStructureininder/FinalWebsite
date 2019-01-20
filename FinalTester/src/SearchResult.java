@@ -122,7 +122,7 @@ public class SearchResult {
 		}
 	}
 
-//added
+	//added
 	public String[][] getTreeResult() {
 		// 0: parent or child; 1: title; 2: url; 3: intro
 		String[][] retVal = new String[legalURL.size() * 4][4];
