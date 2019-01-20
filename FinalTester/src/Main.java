@@ -47,28 +47,22 @@ public class Main extends HttpServlet {
 		}
 		SearchResult sr = new SearchResult(request.getParameter("keyword"));
 		sr.setResultURL();
-		ArrayList<URLobj> arr0 = sr.getArr();
-		String[][] arr = new String[arr0.size()][3];
+//		ArrayList<URLobj> arr0 = sr.getArr();
+		String[][] arr = sr.getTreeResult();
 
 		request.setAttribute("query", arr);
 
-		int i = 0;
-		for (URLobj ele : arr0) {
-			String key = ele.title;
-			String value = ele.getURL();
-			arr[i][0] = key;
-			arr[i][1] = value;
-			// added
-			String intro = ele.intro;
-			arr[i][2] = intro;
-			// end of added
-			i++;
-		}
-//		URLobj[] arr1 = new URLobj[arr.size()];
-//		for(int i = 0; i<arr.size();i++) {
-//			arr1[i]=arr.get(i);
+//		int i = 0;
+//		for (URLobj ele : arr0) {
+//			String key = ele.title;
+//			String value = ele.getURL();
+//			arr[i][0] = key;
+//			arr[i][1] = value;
+//			String intro = ele.intro;
+//			arr[i][2] = intro;
+//			i++;
 //		}
-
+		
 		request.getRequestDispatcher("ResultView2.jsp").forward(request, response);
 
 	}

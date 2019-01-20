@@ -1,32 +1,25 @@
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 public class Counter {
     private String urlStr = "";
-    private String keyword;
+    private ArrayList<Keyword> keywords;
     private String content;
     private Document duck;
 
-    public Counter(String url, String keyword) {
-    	if(url.contains("http")) {
-    		this.urlStr = url;
-    	}else {
-    		this.urlStr = null;
-    	}
-        this.keyword = keyword;
+    public Counter(String url, ArrayList<Keyword> keywordList) {
+        this.urlStr = url;
+        this.keywords = keywordList;
         try {
-			this.duck = Jsoup.connect(urlStr).get();
+			this.duck = Jsoup.connect(urlStr).userAgent("Mozilla/5.0").get();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("url not available");
 		}
     }
     
-
 	public String setTitle() {
 		if (duck != null) {
 			Elements ti = duck.getElementsByTag("title");
@@ -35,6 +28,7 @@ public class Counter {
 			if(title.length()>30) {
 				title = title.substring(0,30)+"...";
 			}
+			
 			return title;
 		}else {
 			return null;
@@ -56,27 +50,38 @@ public class Counter {
 		}
 		return 0;
 	}
+	
+	private double countSingle(String kword) {
+		if (duck != null) {
+			content = duck.toString();
 
-    public double countKeyword() throws IOException {
-		if (duck != null) {content = duck.toString();
+			content = content.toUpperCase();
+			kword = kword.toUpperCase();
 
-        content = content.toUpperCase();
-        keyword = keyword.toUpperCase();
+			// to do : indexOf(keyword)
+			int reVal = 0;
+			int fromIndex = 0;
+			int found = -1;
 
-        // to do : indexOf(keyword)
-        int reVal = 0;
-        int fromIndex = 0;
-        int found = -1;
+			while ((found = content.indexOf(kword, fromIndex)) != -1) {
+				reVal++;
+				fromIndex = found + kword.length();
+			}
 
-        while ((found = content.indexOf(keyword, fromIndex)) != -1) {
-            reVal++;
-            fromIndex = found + keyword.length();
-        }
-
-        return (double)reVal;
+			return (double) reVal;
 		}
 		return 0;
-    }
+	}
+
+	public double countKeyword() throws IOException {
+		double retVal = 0;
+		for (Keyword ele : keywords) {
+			ele.score *= countSingle(ele.keyword);
+			retVal+=ele.score;
+		}
+		return retVal;
+	}
+
     public double countTime() throws IOException {
 //        Document duck = Jsoup.connect(urlStr).get();
         double retVal;
@@ -140,7 +145,4 @@ public class Counter {
         retVal = Double.parseDouble(datestring) / 10000;
         return retVal;
     }
-
-
-	
 }

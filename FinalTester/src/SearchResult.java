@@ -7,19 +7,33 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
 public class SearchResult {
 	private String searchText = "菜單 ";
 	private ArrayList<URLobj> legalURL = new ArrayList<>();
 	private String inputSearch = "";
+	private ArrayList<Keyword> keywordList= new ArrayList<>();
 
 	public SearchResult(String inputSearch) {
 		this.inputSearch = inputSearch;
 		this.searchText += inputSearch;
+		setKeywords();
+	}
+	
+	private void setKeywords() {
+		if (inputSearch.contains(" ")) {
+			String[] temp = inputSearch.split(" ");
+			for (String ele: temp) {
+				keywordList.add(new Keyword(ele, 3));
+			}
+		} else {
+			keywordList.add(new Keyword(inputSearch, 3));
+		}
 	}
 
 	public void setResultURL() {
 		try {
+			
+			
 			Document duckduckgo = Jsoup.connect("https://www.google.com/search?q=" + searchText)
 					.userAgent("Mozilla/5.0").get();
 			Elements searchResult = duckduckgo.getElementsByAttributeValue("class", "r");
@@ -27,7 +41,7 @@ public class SearchResult {
 				String ele2 = ele.toString();
 				if (ele2.contains("http")) {
 					ele2 = ele2.substring(ele2.indexOf("http"), ele2.indexOf("&amp"));
-					legalURL.add(new URLobj(ele2, inputSearch));
+					legalURL.add(new URLobj(ele2, keywordList));
 				}
 			}
 			   //added
@@ -45,7 +59,7 @@ public class SearchResult {
 			    i++;
 			   }
 			   //end of add
-
+			
 			for (URLobj ele : legalURL) {
 				ele.countSum();
 			}
@@ -116,6 +130,30 @@ public class SearchResult {
 			retVal += (ele.title/* + ": " + ele.getURL()*/ + "\n");
 //			retVal += ( "<html><a href='"+ele.getURL()+"'>"+ele.title+"</a></html>");
 
+		}
+		return retVal;
+	}
+//added
+	public String[][] getTreeResult() {
+		// 0: parent or child; 1: title; 2: url; 3: intro
+		String[][] retVal = new String[legalURL.size() * 4][4];
+		int i = 0;
+		for (URLobj ele : legalURL) {
+			retVal[i][0] = "parent";
+			retVal[i][1] = ele.title;
+			retVal[i][2] = ele.getURL();
+			retVal[i][3] = ele.intro;
+			int j = 1;
+			if (ele.children != null) {
+				for (childURL child : ele.children) {
+					retVal[i + j][0] = "child";
+					retVal[i + j][1] = child.title;
+					retVal[i + j][2] = ele.getURL();
+					retVal[i + j][3] = null;
+					j++;
+				}
+			}
+			i+=j;
 		}
 		return retVal;
 	}

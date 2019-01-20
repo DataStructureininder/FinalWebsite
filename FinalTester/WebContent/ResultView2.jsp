@@ -9,7 +9,7 @@
 <title>Search Result</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="/FinalTester/css/main.css" />
+<link rel="stylesheet" href="/FinalTester/resultview/css/main.css" />
 </head>
 <body>
 
@@ -17,39 +17,55 @@
 	<header id="header">
 		<div class="logo">
 			<a href="http://localhost:8080/FinalTester/Main">Search Result<span>by
-					group 13</span></a>
-					<br>
-			<div><a href="/FinalTester/Main"
-				style="font-size: 28px; color:#E6E6FA">> Search < </a><h>&nbsp;&nbsp;&nbsp;</h>
-			<a href="/FinalTester/intro.html"
-				style="font-size: 28px; color:#E6E6FA"> > Introduction <</a></div>
+					group 13</span></a> <br>
+			<div>
+				<a href="/FinalTester/Main" style="font-size: 28px; color: #E6E6FA">>
+					Search < </a>
+				<h>&nbsp;&nbsp;&nbsp;</h>
+				<a href="/FinalTester/intro.html"
+					style="font-size: 28px; color: #E6E6FA"> > Introduction <</a>
+			</div>
 		</div>
 	</header>
-	
+
 
 	<!-- Main -->
 	<section id="main">
 		<div class="inner">
-			
 
-			<p>
+
+			<div style="position: relative; left: 1%;">
 				<%
 					String[][] orderList = (String[][]) request.getAttribute("query");
+					int j = 1;
 					for (int i = 0; i < orderList.length; i++) {
+						if (orderList[i][0] != null) {
+							if (orderList[i][0].equals("parent")) {
 				%>
 				<br>
-			<div>
-				-
-				<%=(i + 1) + ". "%>> <a href='<%=orderList[i][1]%>'><%=orderList[i][0]%></a>
+				<div>
+					-
+					<%=j + ". "%>> <a href='<%=orderList[i][2]%>'><%=orderList[i][1]%></a>
+					<br>
+					<h style="font-size:5px ;"><%=orderList[i][3]%></h>
+				</div>
 				<br>
-				<h style="font-size:5px ;"><%=orderList[i][2]%></h>
-			</div>
-			<br>
 
-			<%
-				}
-			%>
-			</p>
+				<%
+					j++;
+							} else if (orderList[i][0].equals("child")) {
+				%>
+				<div>
+					&nbsp;&nbsp;&nbsp;-related article: <a href='<%=orderList[i][2]%>'><%=orderList[i][1]%></a>
+				</div>
+				<br>
+
+				<%
+							}
+						}
+					}
+				%>
+			</div>
 		</div>
 	</section>
 
@@ -57,14 +73,14 @@
 	<footer id="footer">
 		<div class="container">
 			<ul class="icons">
-				<li><a href="https://twitter.com" class="icon fa-twitter"><span
+				<!-- <li><a href="https://twitter.com" class="icon fa-twitter"><span
 						class="label">Twitter</span></a></li>
 				<li><a href="https://www.facebook.com" class="icon fa-facebook"><span
 						class="label">Facebook</span></a></li>
 				<li><a href="https://www.instagram.com/"
 					class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 				<li><a href="https://mail.google.com/mail/"
-					class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					class="icon fa-envelope-o"><span class="label">Email</span></a></li> -->
 			</ul>
 		</div>
 		<div class="copyright">
