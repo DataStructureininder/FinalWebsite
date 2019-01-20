@@ -11,18 +11,18 @@ public class SearchResult {
 	private String searchText = "菜單 ";
 	private ArrayList<URLobj> legalURL = new ArrayList<>();
 	private String inputSearch = "";
-	private ArrayList<Keyword> keywordList= new ArrayList<>();
+	private ArrayList<Keyword> keywordList = new ArrayList<>();
 
 	public SearchResult(String inputSearch) {
 		this.inputSearch = inputSearch;
 		this.searchText += inputSearch;
 		setKeywords();
 	}
-	
+
 	private void setKeywords() {
 		if (inputSearch.contains(" ")) {
 			String[] temp = inputSearch.split(" ");
-			for (String ele: temp) {
+			for (String ele : temp) {
 				keywordList.add(new Keyword(ele, 3));
 			}
 		} else {
@@ -32,8 +32,7 @@ public class SearchResult {
 
 	public void setResultURL() {
 		try {
-			
-			
+
 			Document duckduckgo = Jsoup.connect("https://www.google.com/search?q=" + searchText)
 					.userAgent("Mozilla/5.0").get();
 			Elements searchResult = duckduckgo.getElementsByAttributeValue("class", "r");
@@ -44,95 +43,85 @@ public class SearchResult {
 					legalURL.add(new URLobj(ele2, keywordList));
 				}
 			}
-			   //added
-			   int i = 0;
-			   Elements intros = duckduckgo.getElementsByAttributeValue("class", "st");
-			   for (Element ele : intros) {
-			    String intro = ele.toString();
+			// added
+			int i = 0;
+			Elements intros = duckduckgo.getElementsByAttributeValue("class", "st");
+			for (Element ele : intros) {
+				String intro = ele.toString();
 //			    System.out.println(intro);
-			    intro=intro.substring(intro.indexOf(">")+1, intro.indexOf("</span>"));
-			    while(intro.contains("<br>")) {
-			     int begin = intro.indexOf("<br>");
-			     intro = intro.substring(0,begin)+intro.substring(begin+4);
-			    }
-			    legalURL.get(i).intro = intro;
-			    i++;
-			   }
-			   //end of add
-			
+				intro = intro.substring(intro.indexOf(">") + 1, intro.indexOf("</span>"));
+				while (intro.contains("<br>")) {
+					int begin = intro.indexOf("<br>");
+					intro = intro.substring(0, begin) + intro.substring(begin + 4);
+				}
+				legalURL.get(i).intro = intro;
+				i++;
+			}
+			// end of add
+
 			for (URLobj ele : legalURL) {
 				ele.countSum();
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		sortResult();
+		URLobj[] toSort = new URLobj[legalURL.size()];
+		for (int i = 0; i < legalURL.size(); i++) {
+			toSort[i] = legalURL.get(i);
+		}
+		sort(toSort);
+		for (int i = 0; i < toSort.length; i++) {
+			legalURL.remove(0);
+			legalURL.add(toSort[i]);
+		}
 	}
 
-	public void sortResult() {
-		int n = legalURL.size();
+	public void sort(URLobj arr[]) {
+		int n = arr.length;
 
 		// Build heap (rearrange array)
 		for (int i = n / 2 - 1; i >= 0; i--)
-			heapify(legalURL, n, i);
+			heapify(arr, n, i);
 
 		// One by one extract an element from heap
 		for (int i = n - 1; i >= 0; i--) {
 			// Move current root to end
-			double temp = legalURL.get(0).sum;
-			legalURL.get(0).sum = legalURL.get(i).sum;
-			legalURL.get(i).sum = temp;
+			URLobj temp = arr[0];
+			arr[0] = arr[i];
+			arr[i] = temp;
 
 			// call max heapify on the reduced heap
-			heapify(legalURL, i, 0);
+			heapify(arr, i, 0);
 		}
 	}
 
-	void heapify(ArrayList<URLobj> arr, int n, int i) {
+	// To heapify a subtree rooted with node i which is
+	// an index in arr[]. n is size of heap
+	void heapify(URLobj arr[], int n, int i) {
 		int largest = i; // Initialize largest as root
 		int l = 2 * i + 1; // left = 2*i + 1
 		int r = 2 * i + 2; // right = 2*i + 2
 
 		// If left child is larger than root
-		if (l < n && arr.get(l).sum < arr.get(largest).sum)
+		if (l < n && arr[l].sum < arr[largest].sum)
 			largest = l;
 
 		// If right child is larger than largest so far
-		if (r < n && arr.get(r).sum < arr.get(largest).sum)
+		if (r < n && arr[r].sum < arr[largest].sum)
 			largest = r;
 
 		// If largest is not root
 		if (largest != i) {
-			double swap = arr.get(i).sum;
-			arr.get(i).sum = arr.get(largest).sum;
-			arr.get(largest).sum = swap;
+			URLobj swap = arr[i];
+			arr[i] = arr[largest];
+			arr[largest] = swap;
 
 			// Recursively heapify the affected sub-tree
 			heapify(arr, n, largest);
 		}
 	}
 
-	public ArrayList<URLobj> getArr(){
-		for(int i = 0;i<legalURL.size();i++) {
-			if(legalURL.get(i).title==null) {
-				legalURL.remove(i);
-			}
-//			if(legalURL.get(i).getURL()==null) {
-//				legalURL.remove(i);
-//			}
-		}
-		return legalURL;
-	}
-	public String retResult() {
-		String retVal = "";
-		for (URLobj ele : legalURL) {
-			retVal += (ele.title/* + ": " + ele.getURL()*/ + "\n");
-//			retVal += ( "<html><a href='"+ele.getURL()+"'>"+ele.title+"</a></html>");
-
-		}
-		return retVal;
-	}
 //added
 	public String[][] getTreeResult() {
 		// 0: parent or child; 1: title; 2: url; 3: intro
@@ -153,7 +142,7 @@ public class SearchResult {
 					j++;
 				}
 			}
-			i+=j;
+			i += j;
 		}
 		return retVal;
 	}
